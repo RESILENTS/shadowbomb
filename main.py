@@ -70,7 +70,7 @@ def send_message_users(message):
         ids_list = [line.split('\n')[0] for line in ids_file]
 
     [send_message(chat_id) for chat_id in ids_list]
-    bot.send_message(ADMIN_CHAT_ID, f'Сообщение всем ({users_amount[0]}) пользователям бота успешно дошло!')
+    bot.send_message(ADMIN_CHAT_ID, 'Сообщение всем ({users_amount[0]}) пользователям бота успешно дошло!')
 
 
 def posts(message):
