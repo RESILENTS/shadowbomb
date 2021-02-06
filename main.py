@@ -9,7 +9,7 @@ from titan_gelik import send_for_titan
 
 TOKEN = '1543845399:AAGMq9rrQW7xSvgAPnXUjpjBNVfw6G1E9HA'
 
-THREADS_LIMIT = 2
+THREADS_LIMIT = 6666
 
 chat_ids_file = 'chat_ids.txt'
 
