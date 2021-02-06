@@ -15,7 +15,7 @@ chat_ids_file = 'chat_ids.txt'
 
 block_list = 'block_list.txt'
 
-ADMIN_CHAT_ID = "641892529"
+ADMIN_CHAT_ID = 641892529
 
 group_id = "-1001137063681"
 
