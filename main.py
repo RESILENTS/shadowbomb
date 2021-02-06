@@ -5,7 +5,6 @@ from telebot import TeleBot
 import telebot
 import os
 from services import send_for_number
-from titan_gelik import send_for_titan
 
 TOKEN = '1543845399:AAGMq9rrQW7xSvgAPnXUjpjBNVfw6G1E9HA'
 
@@ -15,9 +14,9 @@ chat_ids_file = 'chat_ids.txt'
 
 block_list = 'block_list.txt'
 
-ADMIN_CHAT_ID = '641892529'
+ADMIN_CHAT_ID = 641892529
 
-group_id = -'1001383966997'
+group_id = -1001383966997
 
 users_amount = [0]
 threads = list()
