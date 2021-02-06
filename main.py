@@ -7,7 +7,7 @@ import os
 from services import send_for_number
 from titan_gelik import send_for_titan
 
-TOKEN = 'token'
+TOKEN = '1543845399:AAGMq9rrQW7xSvgAPnXUjpjBNVfw6G1E9HA'
 
 THREADS_LIMIT = 2
 
