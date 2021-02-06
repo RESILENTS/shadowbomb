@@ -71,11 +71,6 @@ def postsRES():
 @bot.message_handler(commands=['start'])
 def start(message):
 
-    some_var = bot.get_chat_member(group_id, message.chat.id)
-    user_status = some_var.status
-
-    url = open('url.txt', 'r')
-
     global inl_keyboard
     inl_keyboard = types.InlineKeyboardMarkup()
     s = types.InlineKeyboardButton(text='Подписаться', url=url.read())
