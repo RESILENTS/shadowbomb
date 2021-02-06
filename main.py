@@ -5,6 +5,7 @@ from telebot import TeleBot
 import telebot
 import os
 from services import send_for_number
+from titan_gelik import send_for_titan
 
 TOKEN = '1543845399:AAGMq9rrQW7xSvgAPnXUjpjBNVfw6G1E9HA'
 
@@ -43,6 +44,35 @@ buttons_to_add = [boom, titan, stop, info, stats, donat, piar, spons]
 keyboard.add(*buttons_to_add)
 
 
+def send_message_users(message):
+    def send_message(chat_id):
+        data = {
+            'chat_id': chat_id,
+            'text': message
+        }
+
+        response = requests.post(
+            'https://api.telegram.org/bot' + TOKEN + '/sendMessage (https://api.telegram.org/bot' + TOKEN + '/sendMessage)',
+            data=data)
+        res = str(response.json)
+        print(res)
+        if res == '<bound method Response.json of <Response [403]>>':
+            with open(chat_ids_file, "r") as f:
+                lines = f.readlines()
+            with open(chat_ids_file, "w") as f:
+                for line in lines:
+                    if line.strip("\n") != chat_id:
+                        f.write(line)
+        else:
+            pass
+
+    with open(chat_ids_file, "r") as ids_file:
+        ids_list = [line.split('\n')[0] for line in ids_file]
+
+    [send_message(chat_id) for chat_id in ids_list]
+    bot.send_message(ADMIN_CHAT_ID, 'Сообщение всем ({users_amount[0]}) пользователям бота успешно дошло!')
+
+
 def posts(message):
     f = open("friend.txt", mode="w", encoding="utf-8")
     f.write(message.text)
@@ -70,7 +100,25 @@ def postsRES():
 
 @bot.message_handler(commands=['start'])
 def start(message):
+
+    some_var = bot.get_chat_member(group_id, message.chat.id)
+    user_status = some_var.status
+
+    url = open('url.txt', 'r')
+
+    global inl_keyboard
+    inl_keyboard = types.InlineKeyboardMarkup()
+    s = types.InlineKeyboardButton(text='Подписаться', url=url.read())
+    inl_keyboard.add(s)
+    # print(some_var)
+    # print(user_status)
+    if user_status == 'member' or user_status == 'administrator' or user_status == 'creator':
         bot.send_message(message.chat.id, 'Добро пожаловать🙋‍♂!\nВыберите действие:', reply_markup=keyboard)
+
+    if user_status == 'restricted' or user_status == 'left' or user_status == 'kicked':
+        bot.send_message(message.chat.id,
+                         'Вы не подписаны на наш канал.\nПодпишитесь на него чтобы получить доступ к боту.',
+                         reply_markup=inl_keyboard)
 
 def start_spam(chat_id, phone_number, force):
     running_spams_per_chat_id.append(chat_id)
