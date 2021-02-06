@@ -16,7 +16,7 @@ block_list = 'block_list.txt'
 
 ADMIN_CHAT_ID = 641892529
 
-group_id = -1001383966997
+group_id = "-1001383966997"
 
 users_amount = [0]
 threads = list()
