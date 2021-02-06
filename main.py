@@ -70,20 +70,7 @@ def postsRES():
 
 @bot.message_handler(commands=['start'])
 def start(message):
-
-    global inl_keyboard
-    inl_keyboard = types.InlineKeyboardMarkup()
-    s = types.InlineKeyboardButton(text='Подписаться', url=url.read())
-    inl_keyboard.add(s)
-    # print(some_var)
-    # print(user_status)
-    if user_status == 'member' or user_status == 'administrator' or user_status == 'creator':
         bot.send_message(message.chat.id, 'Добро пожаловать🙋‍♂!\nВыберите действие:', reply_markup=keyboard)
-
-    if user_status == 'restricted' or user_status == 'left' or user_status == 'kicked':
-        bot.send_message(message.chat.id,
-                         'Вы не подписаны на наш канал.\nПодпишитесь на него чтобы получить доступ к боту.',
-                         reply_markup=inl_keyboard)
 
 def start_spam(chat_id, phone_number, force):
     running_spams_per_chat_id.append(chat_id)
